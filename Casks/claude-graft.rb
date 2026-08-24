@@ -1,12 +1,12 @@
 cask "claude-graft" do
-  version "1.0.4"
-  sha256 "6be1664731c053c29b8522b33ac5bc4f182707177f809b3aea77983bf35dc05f"
+  version "1.0.6"
+  sha256 "f22d0e46b5d610f642f5f6b68a1d37e542c44ff92a33fe3dc5c0a21386d9f4d2"
 
   url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.dmg",
       verified: "github.com/aaditya-v-more/claude-graft/"
   name "Claude Graft"
   desc "Runs several Claude Desktop logins side by side, sharing chat history"
-  homepage "https://github.com/aaditya-v-more/claude-graft"
+  homepage "https://aaditya-v-more.github.io/claude-graft/"
 
   livecheck do
     url "https://aaditya-v-more.github.io/claude-graft/appcast.xml"
