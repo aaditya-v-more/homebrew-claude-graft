@@ -5,7 +5,7 @@ cask "claude-graft" do
   url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.zip",
       verified: "github.com/aaditya-v-more/claude-graft/"
   name "Claude Graft"
-  desc "Runs several Claude Desktop logins side by side and shares chat history between them"
+  desc "Runs several Claude Desktop logins side by side, sharing chat history"
   homepage "https://github.com/aaditya-v-more/claude-graft"
 
   livecheck do
@@ -17,7 +17,7 @@ cask "claude-graft" do
   # version and then leave upgrades alone rather than reinstalling over the top
   # of a copy that has already moved on.
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Claude Graft.app"
 
@@ -27,8 +27,8 @@ cask "claude-graft" do
   zap trash: [
     "~/Library/Application Support/ClaudeGraft",
     "~/Library/Caches/graft.claude-graft",
-    "~/Library/Preferences/graft.claude-graft.plist",
     "~/Library/HTTPStorages/graft.claude-graft",
+    "~/Library/Preferences/graft.claude-graft.plist",
   ]
 
   caveats <<~EOS
