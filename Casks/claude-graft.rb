@@ -32,13 +32,15 @@ cask "claude-graft" do
   ]
 
   caveats <<~EOS
-    Claude Graft is signed but not notarised, so macOS blocks it on first launch
-    unless it was installed with --no-quarantine:
+    Claude Graft is ad-hoc signed rather than notarised, which needs a paid
+    Apple developer account, so macOS refuses the first launch. Homebrew always
+    quarantines what it downloads and no longer offers a way to skip it, so
+    clear it once by hand:
 
-      brew install --cask --no-quarantine aaditya-v-more/claude-graft/claude-graft
+      xattr -dr com.apple.quarantine "/Applications/Claude Graft.app"
 
-    Without that flag, open System Settings -> Privacy & Security after the
-    first launch attempt and choose Open Anyway. Updates the app installs itself
-    afterwards need no such step.
+    Or launch it, let macOS refuse, then open System Settings -> Privacy &
+    Security and choose Open Anyway. Either way it is once: the app updates
+    itself from then on, and what it installs is not quarantined.
   EOS
 end
