@@ -1,7 +1,6 @@
 # Homebrew tap for Claude Graft
 
     brew install --cask aaditya-v-more/claude-graft/claude-graft
-    xattr -dr com.apple.quarantine "/Applications/Claude Graft.app"
 
 [Claude Graft](https://github.com/aaditya-v-more/claude-graft) runs several
 Claude Desktop logins side by side, each with its own name, icon and account,
@@ -13,15 +12,22 @@ it once and it is remembered by name, so later versions install without asking
 again. `brew trust --tap aaditya-v-more/claude-graft` covers anything else added
 here later.
 
-The `xattr` line is there because the app is ad-hoc signed rather than notarised,
-and notarising needs a paid Apple developer account. Homebrew quarantines
-everything it downloads — Homebrew 6 dropped the `--no-quarantine` flag that
-used to skip it — so macOS refuses the first launch until the attribute is
-cleared. Opening System Settings -> Privacy & Security and choosing Open Anyway
-after the refusal does the same thing.
+## Why the cask clears the quarantine attribute
 
-It is a one-time step either way. The app updates itself through Sparkle after
-that, and Sparkle clears the attribute on what it installs, so no later version
-asks again. The cask declares `auto_updates`, so `brew upgrade` leaves the
-installed copy alone rather than reinstalling over a version that has already
-moved on.
+The app is ad-hoc signed rather than notarised — notarising means a paid Apple
+developer account. macOS refuses to open a quarantined app that is not
+notarised, and Homebrew quarantines everything it downloads with no way to ask
+it not to since Homebrew 6. Without something clearing that attribute, every
+install would end with the user running `xattr -dr com.apple.quarantine` by
+hand or hunting through System Settings.
+
+So the cask runs that one command in a `postflight`, which is visible in the
+cask file and covered by the trust you granted when installing. Nothing about
+the app's signature changes; `spctl` still rejects it. If you would rather judge
+that yourself, take the zip from the
+[releases page](https://github.com/aaditya-v-more/claude-graft/releases) and
+allow it in System Settings -> Privacy & Security instead.
+
+The app updates itself through Sparkle afterwards, verifying an EdDSA signature
+on every download, so the cask declares `auto_updates` and `brew upgrade` leaves
+the installed copy alone.
