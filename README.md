@@ -7,7 +7,13 @@
 Claude Desktop logins side by side, each with its own name, icon and account,
 and lets a shortcut read another profile's Claude Code history.
 
-The second line is there because the app is ad-hoc signed rather than notarised,
+Homebrew asks you to trust the cask the first time, because a tap can run code
+of its own at install time and this one is not an official Homebrew tap. Answer
+it once and it is remembered by name, so later versions install without asking
+again. `brew trust --tap aaditya-v-more/claude-graft` covers anything else added
+here later.
+
+The `xattr` line is there because the app is ad-hoc signed rather than notarised,
 and notarising needs a paid Apple developer account. Homebrew quarantines
 everything it downloads — Homebrew 6 dropped the `--no-quarantine` flag that
 used to skip it — so macOS refuses the first launch until the attribute is
