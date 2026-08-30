@@ -1,6 +1,6 @@
 cask "claude-graft" do
-  version "1.0.10"
-  sha256 "7d98c084e91e6006a4c277c8ea1fd79372198543b60c04849b61789b4cea8d41"
+  version "1.0.11"
+  sha256 "30a803c1c672657a431f18d49c53e5bc92962b3cd480834ac3ea8e41ade2366a"
 
   url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.dmg",
       verified: "github.com/aaditya-v-more/claude-graft/"
