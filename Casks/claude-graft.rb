@@ -2,8 +2,7 @@ cask "claude-graft" do
   version "1.1.3"
   sha256 "01f7e74ccafb7dc855cb7d43c750343b76b9e3522d6972c69ba9cbf4b980832a"
 
-  url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.dmg",
-      verified: "github.com/aaditya-v-more/claude-graft/"
+  url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.dmg"
   name "Claude Graft"
   desc "Runs several Claude Desktop logins side by side, sharing chat history"
   homepage "https://aaditya-v-more.github.io/claude-graft/"
@@ -30,10 +29,10 @@ cask "claude-graft" do
   # only reasonable because `brew trust` already asked whether this tap may run
   # its own code, and this is that code, in the open. Nothing else about the
   # app changes: it is still unsigned by Apple, and the caveats still say so.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args:         ["-dr", "com.apple.quarantine", "#{appdir}/Claude Graft.app"],
-                   must_succeed: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:         ["-dr", "com.apple.quarantine", "{{appdir}}/Claude Graft.app"],
+        must_succeed: false
   end
 
   # Only what Graft itself wrote. A profile's own folder is named by whoever
