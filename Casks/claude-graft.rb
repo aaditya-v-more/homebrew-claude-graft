@@ -4,8 +4,8 @@ cask "claude-graft" do
 
   url "https://github.com/aaditya-v-more/claude-graft/releases/download/v#{version}/ClaudeGraft-#{version}.dmg"
   name "Claude Graft"
-  desc "Runs several Claude Desktop logins side by side, sharing chat history"
-  homepage "https://aaditya-v-more.github.io/claude-graft/"
+  desc "Runs several Claude Desktop accounts side by side and shares their usage"
+  homepage "https://graft.aadityamore.com/"
 
   livecheck do
     url "https://aaditya-v-more.github.io/claude-graft/appcast.xml"

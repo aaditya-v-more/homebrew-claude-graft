@@ -2,9 +2,10 @@
 
     brew install --cask aaditya-v-more/claude-graft/claude-graft
 
-[Claude Graft](https://github.com/aaditya-v-more/claude-graft) runs several
-Claude Desktop logins side by side, each with its own name, icon and account,
-and lets a shortcut read another profile's Claude Code history.
+[Claude Graft](https://graft.aadityamore.com/) runs every Claude account you
+have side by side, each signed in on its own profile, and lets them share their
+usage: when one account runs out, Claude Code carries on with another's. The
+source is [on GitHub](https://github.com/aaditya-v-more/claude-graft).
 
 Homebrew asks you to trust the cask the first time, because a tap can run code
 of its own at install time and this one is not an official Homebrew tap. Answer
@@ -31,3 +32,11 @@ allow it in System Settings -> Privacy & Security instead.
 The app updates itself through Sparkle afterwards, verifying an EdDSA signature
 on every download, so the cask declares `auto_updates` and `brew upgrade` leaves
 the installed copy alone.
+
+## What removing it does
+
+`brew uninstall` quits Graft first and has its launcher take the lines it added
+to each Claude's Claude Code settings back out, so no Claude is left reaching for
+a relay that has gone. A Claude open at that moment loses them as it closes.
+`--zap` also removes what Graft wrote for itself, and never a profile: those are
+named by whoever made them and hold that account's chats.
