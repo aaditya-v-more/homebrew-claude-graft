@@ -35,6 +35,18 @@ cask "claude-graft" do
         must_succeed: false
   end
 
+  # Graft lends logins through a relay that Claude Code reaches by two lines in
+  # each borrowing Claude's settings. Removing the app without taking them out
+  # would leave Claude Code dialling a relay that is gone after the next
+  # logout, so Graft is quit first and its launcher takes the lines out of
+  # every Claude that is closed; one that is open loses them as it closes.
+  uninstall signal: [["TERM", "graft.claude-graft"]],
+            script: {
+              executable:   "#{appdir}/Claude Graft.app/Contents/Resources/graft-launch",
+              args:         ["--stop-sharing"],
+              must_succeed: false,
+            }
+
   # Only what Graft itself wrote. A profile's own folder is named by whoever
   # created it and holds that account's chats, so nothing here goes looking for
   # one to delete.
@@ -43,6 +55,7 @@ cask "claude-graft" do
     "~/Library/Caches/graft.claude-graft",
     "~/Library/HTTPStorages/graft.claude-graft",
     "~/Library/Preferences/graft.claude-graft.plist",
+    "~/Library/WebKit/graft.claude-graft",
   ]
 
   caveats <<~EOS
